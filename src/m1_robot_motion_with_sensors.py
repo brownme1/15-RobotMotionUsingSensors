@@ -84,7 +84,9 @@ def run_test_go_and_stop():
     #   to test both   go   and   stop   at the same time.
     # -------------------------------------------------------------------------
     robot = SimpleRoseBot()
-    robot.go(10, 40)
+    robot.go(100, 40)
+    robot.stop()
+
 
 def run_test_go_straight_for_seconds():
     """ Tests the   go_straight_for_seconds   method of SimpleRoseBot. """
@@ -135,8 +137,13 @@ class SimpleRoseBot(object):
         self. right_wheel_motor = Motor('C')
         self.color_sensor = ColorSensor(3)
 
-    def go(self,left_wheel_speed, right_wheel_speed):
+    def go(self, left_wheel_speed, right_wheel_speed):
         self.left_wheel_motor.turn_on(left_wheel_speed)
+        self.right_wheel_motor.turn_on(right_wheel_speed)
+
+    def stop(self):
+        self.left_wheel_motor.turn_off()
+        self.right_wheel_motor.turn_off()
 
 ###############################################################################
 # The  Motor   and   ColorSensor classes.  USE them, but do NOT modify them.
